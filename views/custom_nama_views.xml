@@ -1,0 +1,45 @@
+<!-- custom_nama_views.xml -->
+
+<odoo>
+    <data>
+
+        <!-- View for CustomNama -->
+        <record id="view_custom_nama_form" model="ir.ui.view">
+            <field name="name">custom.nama.form</field>
+            <field name="model">custom.nama</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="request_vendor"/>
+                        <field name="no_kontrak"/>
+                        <field name="with_po"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Menu Action for CustomNama -->
+        <record id="action_custom_nama" model="ir.actions.act_window">
+            <field name="name">Custom Nama</field>
+            <field name="res_model">custom.nama</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Purchase Order Form View -->
+        <record id="purchase_order_form_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Purchase Orders">
+                        <group>
+                            <field name="custom_nama_ids" widget="many2many_tags" options="{'no_create': True}" />
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</odoo>
